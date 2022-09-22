@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.List;
 
 @RestController
@@ -17,16 +19,22 @@ public class DepartmentController {
     @Autowired
     private DepartmentService departmentService;
 
-    private final Logger LOGGER= LoggerFactory.getLogger(DepartmentController.class);
+    private final Logger LOGGER = LoggerFactory.getLogger(DepartmentController.class);
+
+    @GetMapping("/get")
+    public InetAddress getIP() throws UnknownHostException {
+        InetAddress ip = InetAddress.getLocalHost();
+        return ip;
+    }
 
     @PostMapping("/departments")
-    public Department saveDepartment(@Valid @RequestBody Department department){
+    public Department saveDepartment(@Valid @RequestBody Department department) {
         LOGGER.info("Inside saveDepartment method of DepartmentController");
         return departmentService.saveDepartment(department);
     }
 
     @GetMapping("/departments")
-    public List<Department> fetchDepartmentList(){
+    public List<Department> fetchDepartmentList() {
         LOGGER.info("Inside fetchDepartmentList method of DepartmentController");
         return departmentService.fetchDepartmentList();
     }
@@ -38,7 +46,7 @@ public class DepartmentController {
     }
 
     @DeleteMapping("/departments/{id}")
-    public String deleteDepartmentByID(@PathVariable("id") long departmentId){
+    public String deleteDepartmentByID(@PathVariable("id") long departmentId) {
         LOGGER.info("Inside deleteDepartmentByID method of DepartmentController");
         departmentService.deleteDepartmentByID(departmentId);
         return "Record deleted successfully";
@@ -46,13 +54,13 @@ public class DepartmentController {
 
     @PutMapping("/departments/{id}")
     public Department updateDepartmentById(@PathVariable("id") long departmentId,
-                                           @RequestBody Department department){
+                                           @RequestBody Department department) {
         LOGGER.info("Inside updateDepartmentById method of DepartmentController");
-        return departmentService.updateDepartmentById(departmentId,department);
+        return departmentService.updateDepartmentById(departmentId, department);
     }
 
     @GetMapping("/departments/name/{name}")
-    public Department fetchDepartmentByName(@PathVariable("name") String departmentName){
+    public Department fetchDepartmentByName(@PathVariable("name") String departmentName) {
         LOGGER.info("Inside fetchDepartmentByName method of DepartmentController");
         return departmentService.fetchDepartmentByName(departmentName);
     }

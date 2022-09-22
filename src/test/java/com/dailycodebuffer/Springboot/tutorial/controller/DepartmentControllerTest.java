@@ -24,19 +24,19 @@ class DepartmentControllerTest {
     @BeforeEach
     void setUp() {
 
-        department = Department.builder().departmentAddress("Ahmedabad")
+        department = Department.builder().departmentAddress("Hyderabad")
                         .departmentId(1L)
                         .departmentName("IT")
                         .departmentCode("IT-06")
                         .build();
 
     }
-
+/*
     @Test
     void saveDepartment() {
     }
 
     @Test
     void fetchDepartmentByID() {
-    }
+    }*/
 }

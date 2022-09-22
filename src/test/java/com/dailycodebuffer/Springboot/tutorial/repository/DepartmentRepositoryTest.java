@@ -26,7 +26,7 @@ class DepartmentRepositoryTest {
                 Department.builder()
                         .departmentName("Mechanical Engineering")
                         .departmentCode("ME - 011")
-                        .departmentAddress("Delhi")
+                        .departmentAddress("Chennai")
                         .build();
         entityManager.persist(department);
     }
